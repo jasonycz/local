@@ -1,3 +1,0 @@
-<br />
-<b>Warning</b>:  readfile(https://bbs.byr.cn/att/Friends/1754900/255): failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
- in <b>/Users/baidu/local/script/GetDatafromonlinetolocal.php</b> on line <b>77</b><br />
