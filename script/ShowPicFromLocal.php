@@ -54,7 +54,7 @@ class ShowPicFromLocal
             $section_dir = $url_arr[4];
             $filename = $url_arr[5].'_'.$url_arr[6].'.jpeg';
             $local_pic_url = $base_dir.$section_dir.'/'.$filename;
-            echo "<img src= ".$local_pic_url." style=width:300px;height:300px;margin-left:10px;  />";
+            echo "<img src= ".$local_pic_url." style=width:300px;height:50%;margin-left:10px;  />";
 
         }
     }
@@ -92,9 +92,10 @@ class ShowPicFromLocal
     }
 
   
-}
+}   
+    echo '<a href="./index.php">script主界面</a><br><br>';
     $show_pic_from_local = new ShowPicFromLocal();
-    $board_name = 'Travel';
+    $board_name = $_GET['board_name'];
 
     // 获取文件夹中的图片信息
     // $path = $_SERVER['DOCUMENT_ROOT'].'/pic/'.$board_name.'/';
