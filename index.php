@@ -1,3 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+
+        <link rel="stylesheet" type="text/css" href="styles/lightbox.css" />
+        <link rel="stylesheet" type="text/css" href="./styles/font-awesome.min.css" />
+        <link href="./styles/myPhoto.css" rel="stylesheet" type="text/css" />
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
+        <script src="./js/jquery.lightbox.js"></script>
+        <script src="./js/myPhoto.js"></script>
+        <script type="text/javascript" src="js/move-top.js"></script>
+        <script type="text/javascript" src="js/easing.js"></script>
+    </head> 
+    <body>
+    <div class="myPhoto">
+    <div class="myPhotos">
 <?php
 
   function p($str){
@@ -11,46 +27,32 @@
   }
  date_default_timezone_set('PRC');
  ini_set('date.timezone','Asia/Shanghai');
-/**
- * 遍历获取目录下的指定类型的文件
- * @param $path
- * @param array $files
- * @return array
- */
-function getfiles($path, $allowFiles, &$files = array())
-{
-    if (!is_dir($path)) return null;
-    if(substr($path, strlen($path) - 1) != '/') $path .= '/';
-    $handle = opendir($path);
-    while (false !== ($file = readdir($handle))) {
-        if ($file != '.' && $file != '..') {
-            $path2 = $path . $file;
-            if (is_dir($path2)) {
-                getfiles($path2, $allowFiles, $files);
-            } else {
-                if (preg_match("/\.(".$allowFiles.")$/i", $file)) {
-                    $files[] = array(
-                        'url'=> substr($path2, strlen($_SERVER['DOCUMENT_ROOT'])),
-                        'mtime'=> filemtime($path2),
-                        'date_time' => date("Y-m-d H:i:s.",filemtime($path2)),
-                    );
-                }
-            }
-        }
-    }
-    return $files;
+$variable[0] = array(
+    'board_name' => 'Travel',
+    'pic_url' => 'https://bbs.byr.cn/att/Travel/127173/1126514',
+    'post_time' => '2016-01-05 23:28:48',
+);
+$variable[1] = array(
+    'board_name' => 'Travel',
+    'pic_url' => 'https://bbs.byr.cn/att/Travel/127173/1126514',
+    'post_time' => '2016-01-05 23:28:48',
+);
+p($variable);
+
+$_html='';
+foreach ($variable as $key => $value) {
+
+    $_html .= '<div class="photoOuterMostDiv" style="background-image:url('.$value['pic_url'].'");>';
+    $_html .= "<div class='overlay'>";
+    $_html .= '<a href='.$value['pic_url'].' data-rel="lightbox" class="fa fa-expand" descript="类别:'.$value['board_name'].'创建时间:'.$value['post_time'].'"></a>';
+    $_html .= "</div>";
+    $_html .= "</div>";
+
 }
+echo $_html;
 
-
-
-$path = $_SERVER['DOCUMENT_ROOT']."/pic/";
-$allowFiles = "jpg";
-$files = getfiles($path,$allowFiles,$files);
-
-p($files);
-
-
-
-
-
-
+?>
+    </div>
+    </div>
+    </body>
+    </html>
