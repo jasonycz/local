@@ -9,8 +9,12 @@
  * Licensed under the MIT license:
  * http://www.opensource.org/licenses/MIT
  */
+require_once("../../../script/ModelLocal.php");
+
 class UploadHandler
 {
+    // 数据库相关
+    private $xiaoyuan_local;
 
     protected $options;
 
@@ -39,6 +43,9 @@ class UploadHandler
     protected $image_objects = array();
 
     public function __construct($options = null, $initialize = true, $error_messages = null) {
+        
+        $this->xiaoyuan_local = new ModelLocal();
+
         $this->response = array();
         $this->options = array(
             'script_url' => $this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
@@ -182,14 +189,23 @@ class UploadHandler
             case 'PUT':
             case 'POST':
                 $res = $this->post($this->options['print_response']);
+                // 存储数据库相关信息
                 $i = json_encode($res); 
                 file_put_contents('20160815.log', "\r\n".'POST--------'."\r\n".$i."\r\n",FILE_APPEND);
                 $j = json_decode($i,true);
-                $j = $j['files']['0']['url'];
+                $j = $j['files']['0']['name'];
                 file_put_contents('20160815.log', "\r\n".'POST--------'."\r\n".$j."\r\n",FILE_APPEND);
+
+                $file = array(
+                    'name' => $j,
+                );
+                $this->save_to_local($file);
+
                 break;
             case 'DELETE':
                 $this->delete($this->options['print_response']);
+                // 删除数据库相关信息
+                
                 break;
             default:
                 $this->header('HTTP/1.1 405 Method Not Allowed');
@@ -1389,6 +1405,21 @@ class UploadHandler
         }
         return $this->generate_response($response, $print_response);
     }
+
+    public function save_to_local($file){
+        if(empty($file['name'])){
+            return;
+        }
+        $board_name = 'Upload';
+        $pic_url = $file['name'];
+        $post_time = date('Y-m-d H:i:s');
+        $sql = 'INSERT INTO pic(board_name,pic_url,post_time) values';
+        $sql .= '("' .$board_name. '","' .$pic_url. '","' .$post_time. '")';
+
+        $this->xiaoyuan_local->exec($sql);
+
+    }
+
 
     protected function basename($filepath, $suffix = null) {
         $splited = preg_split('/\//', rtrim ($filepath, '/ '));

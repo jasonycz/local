@@ -43,20 +43,31 @@ class ShowPicFromLocal
         }
 
    }
-    public function show_pic_by_local_with_db($res){
-        if(empty($res)){
+    public function show_pic_by_local_with_db($board_name,$res){
+        if(empty($res) || empty($board_name)){
             echo "图片数据为空,返回<br>"; 
         }
-        foreach ($res as $value) {
-            $url = $value['pic_url'];
-            $base_dir = '/pic/';
-            $url_arr = explode('/', $url);
-            $section_dir = $url_arr[4];
-            $filename = $url_arr[5].'_'.$url_arr[6].'.jpeg';
-            $local_pic_url = $base_dir.$section_dir.'/'.$filename;
-            echo "<img src= ".$local_pic_url." style=width:300px;height:50%;margin-left:10px;  />";
-
+        // 根据图片的类型不行 从不同地点获取数据
+        if($board_name != 'Upload'){
+            foreach ($res as $value) {
+                $url = $value['pic_url'];
+                $base_dir = '/pic/';
+                $url_arr = explode('/', $url);
+                $section_dir = $url_arr[4];
+                $filename = $url_arr[5].'_'.$url_arr[6].'.jpeg';
+                $local_pic_url = $base_dir.$section_dir.'/'.$filename;
+                echo "<img src= ".$local_pic_url." style=width:300px;height:50%;margin-left:10px;  />";
+            }   
+        }else{
+            foreach ($res as $value) {
+                $url = $value['pic_url'];
+                $base_dir = '/jquery_pc/server/php/files';
+                $filename = $value['pic_url'];
+                $local_pic_url = $base_dir.'/'.$filename;
+                echo "<img src= ".$local_pic_url." style=width:300px;height:50%;margin-left:10px;  />";
+            } 
         }
+        
     }
    
     /**
@@ -110,7 +121,7 @@ class ShowPicFromLocal
     
     // 应为数据库中的数据和本地保存的文件的路径有对应关系 所以可以直接读取数据库数据 然后获取本地文件路径
     $res = $show_pic_from_local->get_pic_from_db($board_name);
-    $show_pic_from_local->show_pic_by_local_with_db($res);
+    $show_pic_from_local->show_pic_by_local_with_db($board_name,$res);
     
 
 

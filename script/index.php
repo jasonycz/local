@@ -12,6 +12,7 @@
 			<li><a href="./ShowPicFromLocal.php?board_name=Travel">显示Travel图片信息</a></li>
 			<li><a href="./ShowPicFromLocal.php?board_name=Friends">显示Friends图片信息</a></li>
 			<li><a href="./ShowPicFromLocal.php?board_name=Picture">显示Picture图片信息</a></li>
+			<li><a href="./ShowPicFromLocal.php?board_name=Upload">显示Upload图片信息</a></li>
 		</ul>
 		
 	</ul>
