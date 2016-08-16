@@ -181,7 +181,12 @@ class UploadHandler
             case 'PATCH':
             case 'PUT':
             case 'POST':
-                $this->post($this->options['print_response']);
+                $res = $this->post($this->options['print_response']);
+                $i = json_encode($res); 
+                file_put_contents('20160815.log', "\r\n".'POST--------'."\r\n".$i."\r\n",FILE_APPEND);
+                $j = json_decode($i,true);
+                $j = $j['files']['0']['url'];
+                file_put_contents('20160815.log', "\r\n".'POST--------'."\r\n".$j."\r\n",FILE_APPEND);
                 break;
             case 'DELETE':
                 $this->delete($this->options['print_response']);
@@ -1357,6 +1362,7 @@ class UploadHandler
             }
         }
         $response = array($this->options['param_name'] => $files);
+
         return $this->generate_response($response, $print_response);
     }
 

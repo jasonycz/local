@@ -1,0 +1,18 @@
+
+POST--------
+{"files":[{"name":"f12e4c9110d1057b49226bf53c3e7bca (1).jpg","size":487771,"type":"image\/jpeg","url":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/files\/f12e4c9110d1057b49226bf53c3e7bca%20%281%29.jpg","thumbnailUrl":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/files\/thumbnail\/f12e4c9110d1057b49226bf53c3e7bca%20%281%29.jpg","deleteUrl":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/index.php?file=f12e4c9110d1057b49226bf53c3e7bca%20%281%29.jpg","deleteType":"DELETE"}]}
+
+POST--------
+http://0.0.0.0:8080/jquery_pc/server/php/files/f12e4c9110d1057b49226bf53c3e7bca%20%281%29.jpg
+
+POST--------
+{"files":[{"name":"571a211aaa2eddf272d34c9c483b16dc.jpg","size":919306,"type":"image\/jpeg","url":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/files\/571a211aaa2eddf272d34c9c483b16dc.jpg","thumbnailUrl":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/files\/thumbnail\/571a211aaa2eddf272d34c9c483b16dc.jpg","deleteUrl":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/index.php?file=571a211aaa2eddf272d34c9c483b16dc.jpg","deleteType":"DELETE"}]}
+
+POST--------
+http://0.0.0.0:8080/jquery_pc/server/php/files/571a211aaa2eddf272d34c9c483b16dc.jpg
+
+POST--------
+{"files":[{"name":"c1bee8a5b19302e067aededf959b91f2 (1).jpg","size":1589072,"type":"image\/jpeg","url":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/files\/c1bee8a5b19302e067aededf959b91f2%20%281%29.jpg","thumbnailUrl":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/files\/thumbnail\/c1bee8a5b19302e067aededf959b91f2%20%281%29.jpg","deleteUrl":"http:\/\/0.0.0.0:8080\/jquery_pc\/server\/php\/index.php?file=c1bee8a5b19302e067aededf959b91f2%20%281%29.jpg","deleteType":"DELETE"}]}
+
+POST--------
+http://0.0.0.0:8080/jquery_pc/server/php/files/c1bee8a5b19302e067aededf959b91f2%20%281%29.jpg

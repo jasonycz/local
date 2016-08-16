@@ -25,7 +25,7 @@
 <body>
 
 <div class="container">
-    <h1>jQuery File Upload Demo</h1>
+    <h1>文件上传</h1>
     <br>
 
     <!-- The file upload form used as target for the file upload widget -->
