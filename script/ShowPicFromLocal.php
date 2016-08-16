@@ -28,7 +28,7 @@ class ShowPicFromLocal
         }else{
             $where = '';
         }
-        $sql = 'select * from pic '.$where.' order by post_time desc';//group by pic_url;
+        $sql = 'select pic_url from pic '.$where.' group by pic_url ';//group by pic_url;order by post_time desc
         $res = $this->xiaoyuan_local->query($sql);
         return $res;
     }

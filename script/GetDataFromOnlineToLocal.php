@@ -1,7 +1,7 @@
 <?php
 
-require_once("./ModelXiaoYuan.php");
-require_once("./ModelLocal.php");
+require_once("ModelXiaoYuan.php");
+require_once("ModelLocal.php");
 /**
 * 
 */
@@ -30,7 +30,7 @@ class GetDataFromOnlineToLocal
         }
         $sql = substr($sql, 0,-1);
         $this->xiaoyuan_local->exec($sql);
-        echo "pic 数据更新完成。";
+        echo "本地pic表 数据更新完成。";
       }
     /**
      * @param  [type]
@@ -39,16 +39,11 @@ class GetDataFromOnlineToLocal
      * @param  string
      * @return 将$url地址的图片抓取到指定地址
      */
-    public function grab_image($url, $base_dir='',$section_dir='', $filename=''){
+    public function grab_image($url, $base_dir='',$section_dir='', $filename='', &$i = 0){
         if(empty($url)){
           return false;
         }
-        // // 优化  通过存入的filename来判断是不是图片  filename的数据可以从value.name 来
-        // $ext = strrchr($filename, '.');
-        // if($ext != '.gif' && $ext != ".jpg" && $ext != ".bmp" && $ext != ".jpeg"){
-        //  echo "不是图片格式！";
-        //  // return false;
-        // }
+
         // 为空就当前目录
         if(empty($base_dir)){
             $base_dir = '../pic/';
@@ -81,6 +76,8 @@ class GetDataFromOnlineToLocal
         $fp2 = fopen($filename , "a"); 
         fwrite($fp2, $img); 
         fclose($fp2); 
+
+        echo ++$i.'|';
         return $filename; 
     } 
 
@@ -90,6 +87,7 @@ class GetDataFromOnlineToLocal
                 echo "下载到本地时,数据为空";
                 return;
             }
+        $i = 0;
         foreach ($res as  $value) {
             $url = $value['pic_url'];
             $base_dir = '../pic/';
@@ -97,30 +95,16 @@ class GetDataFromOnlineToLocal
             $section_dir = $url_arr[4];
             $filename = $url_arr[5].'_'.$url_arr[6].'.jpeg';
 
-            $this->grab_image($url,$base_dir,$section_dir,$filename);
+            $this->grab_image($url,$base_dir,$section_dir,$filename,$i);
         }
-        echo "文件下载成功!<br>";
+        echo "<br>文件下载成功,一共".$i."张图片!<br>";
+
+        return $i;
     }
 
 
   
 }
-    $get_data = new GetDataFromOnlineToLocal();
-
-    // 获取线上数据库数据
-    $res = $get_data->get_data_from_online();
-
-    // 存储线上数据到本地数据库
-    // $get_data->post_online_data_to_local($res);
-
-    // 下载数据到本地文件夹
-    $get_data->download_pic_file($res);
-
-
-
-
-
-
 
 
 
